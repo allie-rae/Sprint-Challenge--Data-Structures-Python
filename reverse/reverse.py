@@ -12,6 +12,7 @@ class Node:
     def set_next(self, new_next):
         self.next_node = new_next
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -39,4 +40,26 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        # to reverse a linked list, you start at the 
+        # head (there are no previous nodes)
+        previous = None
+        current = self.head
+        # this loop goes until it hits the end of the 
+        # linked list, which is None
+        while current is not None:
+            # changes the next pointer 
+            next = current.next_node
+            # changes the current pointer from next_node
+            # to previous node (essentially switching the direction the pointer points)
+            current.next_node = previous
+            # to mode to the next node, the previous node
+            # needs to be set to the current node
+            previous = current
+            # finally, the current pointer must point 
+            # to the next node so that the loop can continue on
+            # to other nodes
+            current = next
+        # the head is reassigned at the end of the loop to the node
+        # that is previous to "None", which was the end of the list,
+        # but is now the start of the list 
+        self.head = previous
